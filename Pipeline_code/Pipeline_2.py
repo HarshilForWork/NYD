@@ -71,8 +71,8 @@ def load_db():
     
     # Use simple text splitter
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200,
+        chunk_size=70000,
+        chunk_overlap=2000,
         length_function=len
     )
     
@@ -100,7 +100,7 @@ def verify_statement(statement, db):
     combined_context = "\n\n---\n\n".join(passages)
     
     # Reasonable size limit for LLM
-    MAX_CONTEXT_SIZE = 40000
+    MAX_CONTEXT_SIZE = 18000
     if len(combined_context) > MAX_CONTEXT_SIZE:
         half_size = MAX_CONTEXT_SIZE // 2
         combined_context = combined_context[:half_size] + "\n\n[...content omitted for brevity...]\n\n" + combined_context[-half_size:]
