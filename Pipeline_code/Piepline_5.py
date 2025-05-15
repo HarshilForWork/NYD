@@ -160,8 +160,8 @@ def load_db():
     for i, shlok in enumerate(shloks):
         # For each shlok, create a document with its text and metadata
         doc_text = f"""Book: {shlok['book']} KANDA
-Sarga: {shlok['sarga']}
-Shlok {shlok['shlok']}: {shlok['text']}"""
+        Sarga: {shlok['sarga']}
+        Shlok {shlok['shlok']}: {shlok['text']}"""
         
         metadata = {
             "book": shlok['book'],

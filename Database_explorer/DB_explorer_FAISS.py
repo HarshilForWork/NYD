@@ -4,7 +4,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.embeddings import Embeddings
 
 # Path to your FAISS database
-DB_PATH = "C:/PF/Projects/ramayana_db"
+DB_PATH = "C:/PF/Projects/NYD/ramayana_db"
 
 # Custom embedding class to wrap SentenceTransformer
 class SentenceTransformerEmbeddings(Embeddings):
@@ -90,10 +90,10 @@ if __name__ == "__main__":
     # To use this script, uncomment one of these examples:
     
     # Example 1: View document by ID
-    inspect_document(doc_id="20")
+    #inspect_document(doc_id="40")
     
     # Example 2: View document by book, sarga, and shlok
-    #inspect_document(book="BALA", sarga="66", shlok="6")
+    inspect_document(book="BALA", sarga="56", shlok="10")
     
     # Example 3: View a context document
     # inspect_document(doc_id="context_0")
