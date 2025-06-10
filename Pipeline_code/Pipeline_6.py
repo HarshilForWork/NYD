@@ -1,3 +1,13 @@
+"""
+The application reads the full Ramayana text and extracts individual shlokas using regex, 
+storing each as a separate document in a FAISS vector database along with metadata such as book name, sarga number, 
+and shlok number to preserve context. These documents are embedded using a sentence-transformer model for semantic search. 
+When a user submits a statement, the app performs similarity search to retrieve the most relevant shloks. For each result,
+approximately 1000 characters before and after the retrieved vector are also included to provide contextual clarity.
+This combined context and the user's statement are passed to a large language model (LLM) via a structured prompt,
+which returns a verdict (TRUE/FALSE), the first matching book, sarga, and shlok, along with a brief explanation 
+containing quoted evidence.
+"""
 import streamlit as st
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
@@ -60,7 +70,7 @@ class ShlokExtractor:
     
     def __init__(self):
         # Regex patterns for extracting metadata and shloks
-        self.book_pattern = re.compile(r'(BALA|AYODHYA|ARANYA|KISHKINDA|SUNDARA|YUDDHA)\s+KANDA')
+        self.book_pattern = re.compile(r'(BALA|AYODHYA|ARANYA|KISHKINDHA|SUNDARA|YUDDHA)\s+KANDA')
         self.sarga_pattern = re.compile(r'SARGA\s+(\d+)')
         self.shlok_pattern = re.compile(r'Shlok\s+([\dab\-]+):\s*(.*?)(?=Shlok\s+[\dab\-]+:|$)', re.DOTALL)
 
@@ -79,7 +89,7 @@ class ShlokExtractor:
         current_sarga = "Unknown"
         
         # Find all book sections
-        book_sections = self.split_by_pattern(text, r'(BALA|AYODHYA|ARANYA|KISHKINDA|SUNDARA|YUDDHA)\s+KANDA')
+        book_sections = self.split_by_pattern(text, r'(BALA|AYODHYA|ARANYA|KISHKINDHA|SUNDARA|YUDDHA)\s+KANDA')
         
         for book_section in book_sections:
             if not book_section.strip():
