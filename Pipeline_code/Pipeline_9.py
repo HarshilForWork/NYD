@@ -32,7 +32,7 @@ class SentenceTransformerEmbeddings(Embeddings):
 
 # Initialize components
 embeddings = SentenceTransformerEmbeddings()
-model = OllamaLLM(model="qwen2.5:7b", temperature=0.6)
+model = OllamaLLM(model="qwen3:4b", temperature=0.6)
 
 # Path to Ramayana text file
 RAMAYANA_FILE_PATH = "C:/PF/Projects/NYD/Datasets/Final_data.txt"
